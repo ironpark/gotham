@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/IronPark/gotham/module/db"
+	//	"github.com/IronPark/gotham/module/db"
 	"github.com/IronPark/gotham/module/template"
 	"github.com/IronPark/gotham/module/util"
 	"github.com/zenazn/goji"
@@ -19,7 +19,7 @@ func projectHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	err = template.Render(w, "project.html", db.Project())
+	err = template.Render(w, "project.html", templateObj(PROJECT))
 	if err != nil {
 		fmt.Println(err)
 	}

@@ -12,6 +12,11 @@ import (
 	"net/http"
 )
 
+const (
+	DASHBOARD = 1
+	PROJECT   = 2
+)
+
 func main() {
 	db.DatabaseInitialization()
 	defer db.Close()
@@ -31,6 +36,20 @@ func main() {
 	goji.Serve()
 }
 
+type data struct {
+	Nav      int
+	Projects []db.ProjectST
+}
+
+func templateObj(where int) data {
+	obj := data{}
+	obj.Nav = where
+	switch where {
+	case PROJECT:
+		obj.Projects = db.Project()
+	}
+	return obj
+}
 func mainHandler(c web.C, w http.ResponseWriter, r *http.Request) {
-	template.Render(w, "index.html", nil)
+	template.Render(w, "index.html", templateObj(DASHBOARD))
 }
