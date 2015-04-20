@@ -1,6 +1,13 @@
 # Status
 very basic step. please don't use this yet.
+
 # Goals
+- [ ] User management
+- [ ] Support simple wiki
+- [ ] User custom themes
+- [ ] Python plugin
+- [ ] RESTful API
+- [ ] Android App
 
 # Dependencies
 ## back-end
