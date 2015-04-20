@@ -104,39 +104,19 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
              <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-					{{if eq .Nav 1}}
-                    <li class="active">
-					{{else}}
-					<li>
-					{{end}}
+                    <li>
                         <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-					{{if eq .Nav 2}}
-                    <li class="active">
-					{{else}}
-					<li>
-					{{end}}
+                     <li class="active">
                         <a href="/project"><i class="fa fa-fw fa-folder"></i> Projects</a>
                     </li>
-					{{if eq .Nav 3}}
-                    <li class="active">
-					{{else}}
-					<li>
-					{{end}}
+                    <li>
                         <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Gantt Chart</a>
                     </li>
-					{{if eq .Nav 4}}
-                    <li class="active">
-					{{else}}
-					<li>
-					{{end}}
+                    <li>
                         <a href="bootstrap-grid.html"><i class="fa fa-fw fa-cogs"></i> Setting</a>
                     </li>
-					{{if eq .Nav 5}}
-                    <li class="active">
-					{{else}}
-					<li>
-					{{end}}
+                    <li>
                         <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Wiki</a>
                     </li>
                 </ul>
