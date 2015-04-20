@@ -1,7 +1,6 @@
 package git
 
 import (
-	"JustGo/module/util"
 	"os"
 	"os/exec"
 	"path/filepath"
