@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"github.com/AaronO/go-git-http"
+	"github.com/AaronO/go-git-http/auth"
 	"github.com/IronPark/gotham/module/db"
 	"github.com/IronPark/gotham/module/template"
 	"github.com/IronPark/gotham/module/util"
@@ -30,7 +31,19 @@ func main() {
 	gitHandler := githttp.New(workingDir)
 	gitHandler.GitBinPath = "C:/Program Files (x86)/Git/bin/git"
 	//	gitHandler.ProjectRoot = "/"
-	goji.Handle("/repo/*", gitHandler)
+	authenticator := auth.Authenticator(func(info auth.AuthInfo) (bool, error) {
+		//		if info.Push {
+		//			return false, nil
+		//		}
+
+		if db.UserVerification(info.Username, info.Password) {
+			return true, nil
+		}
+
+		return false, nil
+	})
+
+	goji.Handle("/repo/*", authenticator(gitHandler))
 	goji.Get("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir(workingDir+"/static"))))
 	goji.Get("/", mainHandler)
 	goji.Serve()
