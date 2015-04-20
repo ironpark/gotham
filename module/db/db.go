@@ -1,8 +1,10 @@
 package db
 
 import (
+	"crypto/sha512"
 	"fmt"
 	"github.com/boltdb/bolt"
+	"io"
 	"log"
 )
 
@@ -38,6 +40,15 @@ func DatabaseInitialization() {
 	})
 }
 
+func InsertUser(id, password string) {
+	h512 := sha512.New()
+	io.WriteString(h512, password)
+	db.Update(func(tx *bolt.Tx) error {
+		users := tx.Bucket([]byte("user"))
+		users.Put([]byte(id), h512.Sum([]byte("gotham!")))
+		return nil
+	})
+}
 func NewProject(user, name, desc string) {
 	db.Update(func(tx *bolt.Tx) error {
 		projectList := tx.Bucket([]byte("project_list"))
