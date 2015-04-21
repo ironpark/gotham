@@ -29,7 +29,7 @@ func DatabaseInitialization() {
 	db.Update(func(tx *bolt.Tx) error {
 		//Users
 		users, _ := tx.CreateBucketIfNotExists([]byte("user"))
-		users.Put([]byte("admin"), []byte("admin")) //Default Admin User
+		users.Put([]byte("admin"), hash("admin")) //Default Admin User
 
 		//Project
 		tx.CreateBucketIfNotExists([]byte("project_list"))

@@ -3,6 +3,7 @@ package db
 import (
 	"bytes"
 	"crypto/sha512"
+	"fmt"
 	"github.com/boltdb/bolt"
 	"io"
 )
@@ -26,6 +27,7 @@ func UserVerification(id, password string) bool {
 	db.View(func(tx *bolt.Tx) error {
 		users := tx.Bucket([]byte("user"))
 		if bytes.Equal(users.Get([]byte(id)), hash(password)) {
+			fmt.Println("UserVerification")
 			ok = true
 		}
 		return nil

@@ -11,15 +11,32 @@ import (
 )
 
 func init() {
-	goji.Get("/project", projectHandler)
+	goji.Get("/project", projectListHandler)
+	goji.Get("/project/:user/:name", projectInfoHandler)
 }
 
-func projectHandler(c web.C, w http.ResponseWriter, r *http.Request) {
+func projectListHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 	err := template.LoadTemplates(util.WorkingDir()+"/view", ".html")
 	if err != nil {
 		fmt.Println(err)
 	}
-	err = template.Render(w, "project.html", templateObj(PROJECT))
+	err = template.Render(w, "project-list.html", templateObj(PROJECT))
+	if err != nil {
+		fmt.Println(err)
+	}
+}
+
+func projectInfoHandler(c web.C, w http.ResponseWriter, r *http.Request) {
+	obj := struct {
+		Nav         int
+		User        string
+		ProjectName string
+	}{
+		Nav:         PROJECT,
+		User:        c.URLParams["user"],
+		ProjectName: c.URLParams["name"],
+	}
+	err := template.Render(w, "project-info.html", obj)
 	if err != nil {
 		fmt.Println(err)
 	}

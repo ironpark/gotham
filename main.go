@@ -30,16 +30,11 @@ func main() {
 	workingDir := util.WorkingDir()
 	gitHandler := githttp.New(workingDir)
 	gitHandler.GitBinPath = "C:/Program Files (x86)/Git/bin/git"
-	//	gitHandler.ProjectRoot = "/"
-	authenticator := auth.Authenticator(func(info auth.AuthInfo) (bool, error) {
-		//		if info.Push {
-		//			return false, nil
-		//		}
 
+	authenticator := auth.Authenticator(func(info auth.AuthInfo) (bool, error) {
 		if db.UserVerification(info.Username, info.Password) {
 			return true, nil
 		}
-
 		return false, nil
 	})
 

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+ {{template "Head"}}
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        {{template "Navigation" .}}
+        <!-- Navigation -->
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="page-header">
+                            <h1>{{.ProjectName}}
+                            <small>{{.User}}</small>
+                            </h1>
+                            <div class=""></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                         <div class="page-header">
+                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createProjectModal">Create Project</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-folder"></i>  <a href="index.html">Projects</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-folder"></i>{{.User}}
+                            </li>
+							<li class="active">
+                                <i class="fa fa-file"></i>{{.ProjectName}}
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="createProjectModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Create Project</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" id="project-modal-form" action="/api/repo" method="post">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="Name" name="name" placeholder="Project Name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="description"  name="description" placeholder="Description">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="CreateBtn">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+        <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script>$(function(){
+$('#CreateBtn').click(function(){
+$('#project-modal-form').submit();
+});
+});
+</script></body></html>
