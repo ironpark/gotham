@@ -238,3 +238,8 @@ ul.alert-dropdown {
   font-size: 13px;
   color: #888;
 }
+
+.clone-info{
+	margin-bottom: 5px;
+/*	height:40px !important;*/
+}

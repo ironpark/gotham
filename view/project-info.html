@@ -23,12 +23,19 @@
                             <div class=""></div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                         <div class="page-header">
-                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createProjectModal">Create Project</button>
-                        </div>
-                    </div>
+
                 </div>
+				<!-- /.row -->
+				<div class="row">
+				<div class="col-md-7 col-md-offset-5">
+					<div class="input-group clone-info">
+					    <input type="text" class="form-control clone-info" value="git clone http://localhost:8000/repo/{{.User}}/{{.ProjectName}}.git">
+					    <span class="input-group-btn">
+					    	<button class="btn btn-success clone-info" type="button">copy</button>
+					    </span>
+					</div><!-- /input-group -->
+				</div>
+				</div>
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -45,6 +52,17 @@
                         </ol>
                     </div>
                 </div>
+				<div class="row">
+					<ul class="col-lg-12" >
+					{{ $projectName :=.ProjectName}}
+					{{ $userName :=.User}}
+		            {{ range $value := .FileTree }}
+						<li class="list-group-item">
+							<a href="/project/{{$userName}}/{{$projectName}}/{{$value}}">{{$value}}</a>
+						</li>
+		            {{ end }}
+					</ul>
+				</div>
             </div>
         </div>
     </div>

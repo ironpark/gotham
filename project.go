@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	//	"github.com/IronPark/gotham/module/db"
+	"github.com/IronPark/gotham/module/git"
 	"github.com/IronPark/gotham/module/template"
 	"github.com/IronPark/gotham/module/util"
 	"github.com/zenazn/goji"
@@ -27,14 +28,20 @@ func projectListHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 }
 
 func projectInfoHandler(c web.C, w http.ResponseWriter, r *http.Request) {
+	user := c.URLParams["user"]
+	name := c.URLParams["name"]
+	template.LoadTemplates(util.WorkingDir()+"/view", ".html")
+	Tree, _ := git.NewRepo(user, name).FileList()
 	obj := struct {
 		Nav         int
 		User        string
 		ProjectName string
+		FileTree    []string
 	}{
 		Nav:         PROJECT,
-		User:        c.URLParams["user"],
-		ProjectName: c.URLParams["name"],
+		User:        user,
+		ProjectName: name,
+		FileTree:    Tree,
 	}
 	err := template.Render(w, "project-info.html", obj)
 	if err != nil {

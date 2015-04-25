@@ -32,7 +32,7 @@ func apiPostHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 		desc := r.FormValue("description")
 		user := "test"
 		if repoName != "" {
-			git.NewRepo(user, repoName)
+			git.NewRepo(user, repoName).CreateRepo()
 			db.NewProject(user, repoName, desc)
 		}
 		db.Project()
