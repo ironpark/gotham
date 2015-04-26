@@ -14,10 +14,11 @@ func hash(str string) []byte {
 	return h512.Sum([]byte("gotham!"))
 }
 
-func InsertUser(id, password string) {
+func InsertUser(email, name, password string) {
 	db.Update(func(tx *bolt.Tx) error {
 		users := tx.Bucket([]byte("user"))
-		users.Put([]byte(id), hash(password))
+		users.Put([]byte(email), hash(password))
+		//users.Put([]byte(email+"@name"), []byte("name"))
 		return nil
 	})
 }
