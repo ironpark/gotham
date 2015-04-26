@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+{{template "Head"}}
+<body>
+<div id="wrapper">
+{{template "Navigation" .}}
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="page-header">
+        <h1>SignUp</h1>
+        </div>
+        
+        <form class="form-horizontal" method="post">
+            <div class="form-group">
+            <label for="inputEmail" class="col-sm-2 control-label">E-Mail</label>
+            <div class="col-sm-6">
+            <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="이메일">
+            </div>
+            </div>
+            <div class="form-group">
+            <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-6">
+            <input type="password" class="form-control"  name="inputPassword" id="inputPassword" placeholder="비밀번호">
+            <p class="help-block">숫자, 특수문자 포함 8자 이상</p>
+            </div>
+            </div>
+            <div class="form-group">
+            <label for="inputPasswordCheck" class="col-sm-2 control-label">Password 확인</label>
+            <div class="col-sm-6">
+            <input type="password" class="form-control" name="inputPasswordCheck" id="inputPasswordCheck" placeholder="비밀번호 확인">
+            <p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
+            </div>
+            </div>
+            <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputName" name="inputName" placeholder="이름">
+            </div>
+            </div>
+
+            <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label"></label>
+            <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </div>
+        </form>
+    </div>
+    <!-- /.container-fluid -->
+    </div>
+<!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+</body>
+</html>

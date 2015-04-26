@@ -21,7 +21,7 @@ func projectListHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	err = template.Render(w, "project-list.html", templateObj(PROJECT))
+	err = template.Render(w, "project-list.html", templateObj(PAGE_PROJECT))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -38,7 +38,7 @@ func projectInfoHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 		ProjectName string
 		FileTree    []string
 	}{
-		Nav:         PROJECT,
+		Nav:         PAGE_PROJECT,
 		User:        user,
 		ProjectName: name,
 		FileTree:    Tree,

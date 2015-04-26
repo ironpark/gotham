@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">SB Admin</a>
+                <a class="navbar-brand" href="/">Gotham</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -102,6 +102,8 @@
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+			{{if eq .Nav 3}}
+			{{else}}
              <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
 					{{if eq .Nav 1}}
@@ -141,6 +143,7 @@
                     </li>
                 </ul>
             </div>
+			{{end}}
             <!-- /.navbar-collapse -->
         </nav>
 {{end}}

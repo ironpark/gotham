@@ -14,8 +14,9 @@ import (
 )
 
 const (
-	DASHBOARD = 1
-	PROJECT   = 2
+	PAGE_DASHBOARD = 1
+	PAGE_PROJECT   = 2
+	PAGE_SIGNUP    = 3
 )
 
 func main() {
@@ -53,11 +54,11 @@ func templateObj(where int) data {
 	obj := data{}
 	obj.Nav = where
 	switch where {
-	case PROJECT:
+	case PAGE_PROJECT:
 		obj.Projects = db.Project()
 	}
 	return obj
 }
 func mainHandler(c web.C, w http.ResponseWriter, r *http.Request) {
-	template.Render(w, "index.html", templateObj(DASHBOARD))
+	template.Render(w, "index.html", templateObj(PAGE_DASHBOARD))
 }
