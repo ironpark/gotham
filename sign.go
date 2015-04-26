@@ -29,6 +29,7 @@ func signupHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 }
+
 func signupFormHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 	template.LoadTemplates(util.WorkingDir()+"/view", ".html")
 	inputEmail := r.FormValue("inputEmail")
@@ -56,9 +57,15 @@ func signupFormHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 }
+
 func signinHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 	err := template.LoadTemplates(util.WorkingDir()+"/view", ".html")
-	err = template.Render(w, "sign-up.html", nil)
+	obj := struct {
+		Nav int
+	}{
+		Nav: PAGE_SIGNUP,
+	}
+	err = template.Render(w, "sign-in.html", obj)
 	if err != nil {
 		fmt.Println(err)
 	}

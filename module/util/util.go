@@ -1,9 +1,12 @@
 package util
 
 import (
+	"crypto/sha512"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 var (
@@ -22,4 +25,14 @@ func init() {
 
 func WorkingDir() string {
 	return wkdir
+}
+
+func HashSha512(str string) []byte {
+	h512 := sha512.New()
+	io.WriteString(h512, str)
+	return h512.Sum([]byte("gotham!"))
+}
+
+func NowTimeStamp() string {
+	return time.Now().Format(time.RFC850)
 }

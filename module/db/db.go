@@ -18,7 +18,7 @@ func init() {
 	// Open the my.db data file in your current directory.
 	// It will be created if it doesn't exist.
 	var err error
-	db, err = bolt.Open("data.db", 0600, nil)
+	db, err = bolt.Open(DATABASE_NAME, 0600, nil)
 
 	if err != nil {
 		log.Fatal(err)

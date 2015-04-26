@@ -6,6 +6,7 @@ import (
 	"github.com/AaronO/go-git-http"
 	"github.com/AaronO/go-git-http/auth"
 	"github.com/IronPark/gotham/module/db"
+	"github.com/IronPark/gotham/module/middleware"
 	"github.com/IronPark/gotham/module/template"
 	"github.com/IronPark/gotham/module/util"
 	"github.com/zenazn/goji"
@@ -42,6 +43,8 @@ func main() {
 	goji.Handle("/repo/*", authenticator(gitHandler))
 	goji.Get("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir(workingDir+"/static"))))
 	goji.Get("/", mainHandler)
+	goji.Use(middleware.SessionMiddleware)
+
 	goji.Serve()
 }
 
