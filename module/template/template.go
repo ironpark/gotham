@@ -2,14 +2,14 @@ package template
 
 import (
 	"html/template"
-	"net/http"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
 )
 
 var (
-	Template *template.Template
+	t *template.Template
 )
 
 func LoadTemplates(templatePath, format string) error {
@@ -28,11 +28,15 @@ func LoadTemplates(templatePath, format string) error {
 		return err
 	}
 
-	Template = template.Must(template.ParseFiles(templates...))
+	t = template.Must(template.ParseFiles(templates...))
 	return nil
 }
 
-func Render(w http.ResponseWriter, filename string, obj interface{}) error {
-	err := Template.ExecuteTemplate(w, filename, obj)
+func Parse(filename string) (*template.Template, error) {
+	return t.Parse(filename)
+}
+
+func Render(w io.Writer, filename string, obj interface{}) error {
+	err := t.ExecuteTemplate(w, filename, obj)
 	return err
 }
